@@ -1,0 +1,7 @@
+apps:
+  - script   : dist/main.js
+    name     : proxy
+    exec_mode: cluster
+    env:
+      NODE_ENV : 'production'
+    instances: 1

@@ -23,5 +23,5 @@ ADD check.sh /home/check.sh
 
 WORKDIR /home
 HEALTHCHECK --interval=30s CMD node healthcheck.js
-EXPOSE 8080
+EXPOSE 8080 80 443 3000 
 ENTRYPOINT ["/bin/sh", "check.sh"]
