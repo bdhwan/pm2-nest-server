@@ -2,5 +2,5 @@
 echo "ok"
 rm -rf package-lock.json
 npm install --production
-tsc
+nest build
 pm2-docker process.yml

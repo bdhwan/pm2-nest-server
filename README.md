@@ -15,8 +15,9 @@ services:
     environment:
       GIT_URL: "your_git_url_with_token"
       BRANCH: "branch_to_check_out"
+      PORT:"service_port_will_use_healthcheck"
     ports:
-    - "8092:80"
+    - "8092:8080"
 ```
 
 
@@ -34,7 +35,7 @@ services:
 echo "ok"
 rm -rf package-lock.json
 npm install --production
-tsc
+nest build
 pm2-docker process.yml
 ```
 
@@ -53,4 +54,24 @@ apps:
     env:
       NODE_ENV : 'production'
     instances: 1
+```
+
+
+
+#example healthcheck response nest
+```
+  @Get('healthcheck')
+  healthcheck(@Req() req: Request, @Res() res: Response) {
+    res.status(200).json('success node-env:' + process.env.NODE_ENV);
+  }
+```
+
+
+
+#example healthcheck response express
+```
+app.get('/healthcheck', function (req, res) {
+    res.status(200).json('success-v12 node-env:' + process.env.NODE_ENV);
+});
+
 ```
